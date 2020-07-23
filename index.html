@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pionor Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="top-area">
+        <h1 class="text-center">Welcome to My Bank</h1>
+        <div class="log-in">
+            <br>
+            <h3>log in</h3>
+            <br>
+            <input type="text"  class="form-control" placeholder="Email Adress">
+            <br>
+            <input type="password"  class="form-control" placeholder="Password">
+            <br>
+            <button id="login" class="btn-success btn">Log In</button>
+            <br>
+            <br>
+        </div>
+    </div>
+    <!-- transection area -->
+    <div id="tramsection">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposite cards text-center">
+                    <h5>Deposite</h5>
+                    <h3>$<span id="currentDeposite">00</span></h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="widraw cards text-center">
+                    <h5>Widraw</h5>
+                    <h3>$ <span id="currentWidraw">00</span></span></h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance cards text-center">
+                    <h5>Blance</h5>
+                    <h3>$<span id="currentBalance">1450</span> </h3>
+                </div>
+            </div>
+        </div>
+        <!-- Left Button -->
+        <div class="row down">
+            <div class="col-md-6 log-in">
+                <h3>Deposite</h3>
+                <br>
+                <input id="depositeAmmount" type="text" class="form-control" placeholder="$ Enter the Ammount">
+                <br>
+                <button id="addDeposite" class="btn-success">Deposite</button>
+                <br>
+            </div>
+            <!-- Right Button -->
+            <div class="col-md-6 log-in">
+                <h3>Widthdraw</h3>
+                <br>
+                <input id="widrawAmmount" type="text" class="form-control"  placeholder="$ Enter the Ammount">
+                <br>
+                <button id="addWidraw" class="btn-success">Widdthdraw</button>
+                <br>
+            </div>
+        </div>
+    </div>
+     <!-- transection area End-->
+    <script>
+        const loginbtn= document.getElementById("login");
+        loginbtn.addEventListener("click", function(){
+            const top_area= document.getElementById("top-area");
+            top_area.style.display= "none"; 
+            const tramsection= document.getElementById("tramsection");
+            tramsection.style.display= "block";
+        })
+    // Add Deposite
+    const depositeBtn= document.getElementById("addDeposite");
+    depositeBtn.addEventListener("click", function(){
+        // const depositeAmmount = document.getElementById("depositeAmmount").value;
+        // const depositeNumber = parseFloat(depositeAmmount);
+        const depositeNumber = getInput("depositeAmmount");
+        // const currentDeposite = document.getElementById("currentDeposite").innerText;
+        // const currentDepositeNumber = parseFloat(currentDeposite);
+        // const totalDeposit = depositeNumber + currentDepositeNumber;
+        // document.getElementById("currentDeposite").innerText = totalDeposit;
+        updateSpan("currentDeposite", depositeNumber);
+        updateSpan("currentBalance", depositeNumber);
+        document.getElementById("depositeAmmount").value= "";
+    })
+    function updateSpan(id, depositeNumber){
+        // const currentBalance = document.getElementById(id).innerText;
+        // const currentBalanceNumber = parseFloat(currentBalance); 
+        // const totalBalance =  depositeNumber + currentBalanceNumber;
+        // document.getElementById(id).innerText=  totalBalance;
+        const current = document.getElementById(id).innerText;
+        const currentNumber = parseFloat(current); 
+        const totalAmmount =  depositeNumber + currentNumber;
+        document.getElementById(id).innerText=  totalAmmount;
+    }
+    // widraw Money handle 
+     const addWidraw = document.getElementById("addWidraw");
+     addWidraw.addEventListener("click", function(){
+        //  const widrawAmmount = document.getElementById("widrawAmmount").value;
+        //  const widrawNumber =  parseFloat(widrawAmmount);
+        const widrawNumber = getInput("widrawAmmount")
+        updateSpan("currentWidraw", widrawNumber);
+        updateSpan("currentBalance", -1 * widrawNumber);
+        document.getElementById("widrawAmmount").value= "";
+     })
+     function getInput(id){
+        const ammount = document.getElementById(id).value;
+         const ammontNumber =  parseFloat(ammount);
+         return ammontNumber;
+     }
+    </script>
+</body>
+</html>
