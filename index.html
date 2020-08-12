@@ -81,13 +81,20 @@
         // const depositeAmmount = document.getElementById("depositeAmmount").value;
         // const depositeNumber = parseFloat(depositeAmmount);
         const depositeNumber = getInput("depositeAmmount");
+        if(depositeNumber<0){
+            alert("Deposite Number cannot be negative");
+            document.getElementById("depositeAmmount").value= "";
+            prompt("tell me your name");
+        }
         // const currentDeposite = document.getElementById("currentDeposite").innerText;
         // const currentDepositeNumber = parseFloat(currentDeposite);
         // const totalDeposit = depositeNumber + currentDepositeNumber;
         // document.getElementById("currentDeposite").innerText = totalDeposit;
-        updateSpan("currentDeposite", depositeNumber);
-        updateSpan("currentBalance", depositeNumber);
-        document.getElementById("depositeAmmount").value= "";
+        else{
+            updateSpan("currentDeposite", depositeNumber);
+            updateSpan("currentBalance", depositeNumber);
+            document.getElementById("depositeAmmount").value= "";
+        }
     })
     function updateSpan(id, depositeNumber){
         // const currentBalance = document.getElementById(id).innerText;
